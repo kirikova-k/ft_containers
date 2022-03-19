@@ -2,11 +2,11 @@
 #define STACK_HPP
 
 #include <iostream>
-#include <vector> //
+#include "Vector.hpp" //
 
 namespace ft
 {
-template <class T, class Container = std::vector<T> > //std replace ft
+template <class T, class Container = ft::Vector<T> > //std replace ft
 
 	class Stack
 	{
