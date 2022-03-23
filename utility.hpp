@@ -4,19 +4,20 @@
 
 namespace ft{
 
-template<class T> struct remove_const { typedef T type; };
+template<class T> struct remove_const { typedef T type; }; ///WHAAAT??!
 
-template<class T> struct remove_const <const T> { typedef T type; };
+template<class T> struct remove_const <const T> { typedef T type; };//WHAAAT??!
 
 
 template <class Iterator> class iterator_traits
 {
 	public:
-		typedef typename Iterator::difference_type	difference_type;
-		typedef typename Iterator::value_type				value_type;
-		typedef typename Iterator::pointer			pointer;
-		typedef typename Iterator::reference			reference;
-		typedef typename Iterator::iterator_category	iterator_category;
+		typedef typename Iterator::difference_type	difference_type;//целочисленный тип, представляющий значения смещений итераторов относительно друг друга;
+		typedef typename Iterator::value_type				value_type;//тип значения, на которое указывает итератор типа T
+		typedef typename Iterator::pointer			pointer;//тип указателя, возвращаемого при обращении к объекту итератора через operator->
+		typedef typename Iterator::reference			reference;//тип ссылки, возвращаемой при разыменовании итератора
+		typedef typename Iterator::iterator_category	iterator_category;//тип, указывающий на набор операций, поддерживаемых итератором. iterator_category
+																			//является синонимом одного из предопределенных теговых классов
 };
 
 template <class T> class iterator_traits<T*>
@@ -47,51 +48,51 @@ template<class T1, class T2> struct pair
 	first_type	first;
 	second_type	second;
 	pair() : first(), second() {}
-    template <class U, class V>
-    pair(const pair<U, V> &pr) : first(pr.first), second(pr.second) {}
+	template <class U, class V>
+	pair(const pair<U, V> &pr) : first(pr.first), second(pr.second) {}
 	pair(const pair & pr) : first(pr.first), second(pr.second) {}
-    pair(const first_type &a, const second_type &b) : first(a), second(b) {}
-    pair &operator=(const pair &pr) {
-        first = pr.first;
-        second = pr.second;
-        return (*this);
-    }
+	pair(const first_type &a, const second_type &b) : first(a), second(b) {}
+	pair &operator=(const pair &pr) {
+		first = pr.first;
+		second = pr.second;
+		return (*this);
+	}
 };
 
 template <class T1, class T2>
 bool operator==(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return lhs.first == rhs.first && lhs.second == rhs.second;
+	return lhs.first == rhs.first && lhs.second == rhs.second;
 }
 
 template <class T1, class T2>
 bool operator!=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return !(lhs == rhs);
+	return !(lhs == rhs);
 }
 
 template <class T1, class T2>
 bool operator<(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return lhs.first < rhs.first ||
-         (!(rhs.first < lhs.first) && lhs.second < rhs.second);
+	return lhs.first < rhs.first ||
+		 (!(rhs.first < lhs.first) && lhs.second < rhs.second);
 }
 
 template <class T1, class T2>
 bool operator<=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return !(rhs < lhs);
+	return !(rhs < lhs);
 }
 
 template <class T1, class T2>
 bool operator>(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return rhs < lhs;
+	return rhs < lhs;
 }
 
 template <class T1, class T2>
 bool operator>=(const pair<T1, T2> &lhs, const pair<T1, T2> &rhs) {
-    return !(lhs < rhs);
+	return !(lhs < rhs);
 }
 
 template <class T1, class T2>
 pair<T1, T2> make_pair(T1 x, T2 y) {
-    return (pair<T1, T2>(x, y));
+	return (pair<T1, T2>(x, y));
 }
 
 template<class T, bool v>
@@ -108,7 +109,7 @@ template <> struct is_integral<char>				: public ft::integral_constant<bool, tru
 template <> struct is_integral<signed char>			: public ft::integral_constant<bool, true> {};
 template <> struct is_integral<unsigned char>		: public ft::integral_constant<bool, true> {};
 template <> struct is_integral<wchar_t>				: public ft::integral_constant<bool, true> {};
-// template <> struct is_integral<char16_t>			: public ft::integral_constant<bool, true> {};
+template <> struct is_integral<char16_t>			: public ft::integral_constant<bool, true> {};
 template <> struct is_integral<short>				: public ft::integral_constant<bool, true> {};
 template <> struct is_integral<unsigned short>		: public ft::integral_constant<bool, true> {};
 template <> struct is_integral<int>					: public ft::integral_constant<bool, true> {};
@@ -134,36 +135,36 @@ struct enable_if<true, T> { typedef T type; };
 
 template<class InputIt1, class InputIt2>
 bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
-                             InputIt2 first2, InputIt2 last2)
+							 InputIt2 first2, InputIt2 last2)
 {
-    for ( ; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2 ) {
-        if (*first1 < *first2) return true;
-        if (*first2 < *first1) return false;
-    }
-    return (first1 == last1) && (first2 != last2);
+	for ( ; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2 ) {
+		if (*first1 < *first2) return true;
+		if (*first2 < *first1) return false;
+	}
+	return (first1 == last1) && (first2 != last2);
 }
 
 template<class InputIt1, class InputIt2, class Compare>
 bool lexicographical_compare(InputIt1 first1, InputIt1 last1,
-                             InputIt2 first2, InputIt2 last2,
-                             Compare comp)
+							 InputIt2 first2, InputIt2 last2,
+							 Compare comp)
 {
-    for ( ; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2 ) {
-        if (comp(*first1, *first2)) return true;
-        if (comp(*first2, *first1)) return false;
-    }
-    return (first1 == last1) && (first2 != last2);
+	for ( ; (first1 != last1) && (first2 != last2); ++first1, (void) ++first2 ) {
+		if (comp(*first1, *first2)) return true;
+		if (comp(*first2, *first1)) return false;
+	}
+	return (first1 == last1) && (first2 != last2);
 }
 
 template <class InputIterator1, class InputIterator2>
   bool equal ( InputIterator1 first1, InputIterator1 last1, InputIterator2 first2 )
 {
 	  while (first1!=last1) {
-		      if (!(*first1 == *first2))   // or: if (!pred(*first1,*first2)), for version 2
-				        return false;
-			      ++first1; ++first2;
-				    }
-	    return true;
+			  if (!(*first1 == *first2))   // or: if (!pred(*first1,*first2)), for version 2
+						return false;
+				  ++first1; ++first2;
+					}
+		return true;
 }
 
 };

@@ -1,7 +1,7 @@
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 #include <memory>
-//#include <iterator>
+// #include <iterator>
 #include "utility.hpp"
 #include "reverse_iterator.hpp"
 
@@ -9,25 +9,23 @@ namespace ft{
 
 
 
-template < class T, class Allocator = std::allocator<T> > class Vector{
+template < class T, class Allocator = std::allocator<T> > class Vector
+{
 
 template< typename L>class RandomAccessIterator
 	{
 	public:
-		typedef	typename iterator_traits<L*>::value_type 	value_type;
+		typedef	typename iterator_traits<L*>::value_type	value_type;
 		typedef	typename iterator_traits<L*>::pointer	pointer;
 		typedef	typename iterator_traits<L*>::reference	reference;
 		typedef	typename iterator_traits<L*>::difference_type	difference_type;
 		typedef pointer iterator_type;
 		//this is for std::functions
 		typedef	std::random_access_iterator_tag iterator_category;
-
-		//maybe protected???
 	private:
 		pointer _ptr;
 
 	public:
-
 		// CONSTRUCTORS
 		RandomAccessIterator() : _ptr() {}
 
@@ -35,120 +33,155 @@ template< typename L>class RandomAccessIterator
 
 		virtual ~RandomAccessIterator() {}
 
-		RandomAccessIterator(const RandomAccessIterator<typename remove_const<value_type>::type > & src) : _ptr(&(*src)) {}
+		RandomAccessIterator(const RandomAccessIterator<typename
+			remove_const<value_type>::type > &src) : _ptr(&(*src)) {}
 
-		RandomAccessIterator<value_type> & operator=(RandomAccessIterator<typename remove_const<value_type>::type > const & src) {
+		RandomAccessIterator<value_type> & operator=(RandomAccessIterator<typename
+			remove_const<value_type>::type > const & src)
+		{
 			_ptr = &(*src);
 			return *this;
 		}
 
 		//OPERATORS
-		RandomAccessIterator & operator++() {
+		RandomAccessIterator & operator++()
+		{
 			++_ptr;
 			return *this;
 		}
 
-		RandomAccessIterator operator++(int) {
+		RandomAccessIterator operator++(int)
+		{
 			RandomAccessIterator tmp(*this);
 			++_ptr;
 			return tmp;
 		}
 
-		RandomAccessIterator & operator--() {
+		RandomAccessIterator & operator--()
+		{
 			--_ptr;
 			return *this;
 		}
 
-		RandomAccessIterator  operator--(int) {
+		RandomAccessIterator  operator--(int)
+		{
 			RandomAccessIterator tmp = *this;
 			--_ptr;
 			return tmp;
 		}
-		RandomAccessIterator operator+(const difference_type & a) const {
+
+		RandomAccessIterator operator+(const difference_type & a) const
+		{
 			return _ptr + a;
 		}
 
-		RandomAccessIterator operator-(const difference_type & a) const {
+		RandomAccessIterator operator-(const difference_type & a) const
+		{
 			return _ptr - a;
 		}
 
-		RandomAccessIterator & operator+=(const difference_type & a) {
+		RandomAccessIterator & operator+=(const difference_type & a)
+		{
 			_ptr += a;
 			return (*this);
 		}
 
-		RandomAccessIterator & operator-=(const difference_type & a) {
+		RandomAccessIterator & operator-=(const difference_type & a)
+		{
 			_ptr -= a;
 			return (*this);
 		}
 
-		pointer operator->() const {
+		pointer operator->() const
+		{
 			return _ptr;
 		}
 
-		reference operator*() const {
+		reference operator*() const
+		{
 			return *_ptr;
 		}
 
-		reference operator[](difference_type n) const {
+		reference operator[](difference_type n) const
+		{
 			return *(_ptr + n);
 		}
 	};
 
 	public:
 	template<typename A, typename B>
-		friend bool operator==(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs){
+		friend bool operator==( const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) == &(*rhs);
-
-
 		}
 
 		template<typename A, typename B>
-		friend bool operator!=(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs) {
+		friend bool operator!=( const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) != &(*rhs);
 		}
 
 		template<typename A, typename B>
-		friend bool operator>(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs) {
+		friend bool operator>(  const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) > &(*rhs);
 		}
 
 		template<typename A, typename B>
-		friend bool operator<(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs) {
+		friend bool operator<(  const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) < &(*rhs);
 		}
 
 		template<typename A, typename B>
-		friend bool operator<=(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs) {
+		friend bool operator<=( const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) <= &(*rhs);
 		}
 
-
 		template<typename A, typename B>
-		friend bool operator>=(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs) {
+		friend bool operator>=( const Vector::template RandomAccessIterator<A> & lhs,
+								const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) >= &(*rhs);
 		}
 
 		template<typename A, typename B>
-		friend typename Vector::template RandomAccessIterator<A>::difference_type operator-(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs){
+		friend typename Vector::template RandomAccessIterator<A>::difference_type operator-
+								(const Vector::template RandomAccessIterator<A> & lhs,
+								 const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) - &(*rhs);
 		}
 
 		template<typename A, typename B>
-		friend typename Vector::template RandomAccessIterator<A>::difference_type operator+(const Vector::template RandomAccessIterator<A> & lhs, const Vector::template RandomAccessIterator<B> & rhs){
+		friend typename Vector::template RandomAccessIterator<A>::difference_type operator+
+								(const Vector::template RandomAccessIterator<A> & lhs,
+								 const Vector::template RandomAccessIterator<B> & rhs)
+		{
 			return &(*lhs) + &(*rhs);
 		}
 
 		template<typename L>
-		friend Vector::template RandomAccessIterator<L> operator +(const typename Vector::template RandomAccessIterator<L>::difference_type & a, const Vector::template RandomAccessIterator<L> & iter){
+		friend Vector::template RandomAccessIterator<L> operator+
+			(const typename Vector::template RandomAccessIterator<L>::difference_type & a,
+									const Vector::template RandomAccessIterator<L> & iter)
+		{
 			return	(iter + a);
 		}
 
 		template<typename L>
-		friend Vector::template RandomAccessIterator<L> operator -(const typename Vector::template RandomAccessIterator<L>::difference_type & a, const Vector::template RandomAccessIterator<L> & iter){
+		friend Vector::template RandomAccessIterator<L> operator-
+			(const typename Vector::template RandomAccessIterator<L>::difference_type & a,
+									const Vector::template RandomAccessIterator<L> & iter)
+		{
 			return	(iter - a);
 		}
-
 
 	public:
 		typedef T value_type;
@@ -164,19 +197,20 @@ template< typename L>class RandomAccessIterator
 		typedef reverse_iterator<const_iterator> const_reverse_iterator;
 		typedef reverse_iterator<iterator> reverse_iterator;
 	private:
-		pointer		_first;
-		size_type 	_size, _capacity;
+		pointer			_first;
+		size_type		_size, _capacity;
 		allocator_type	_allocator;
 	public:
 
 		//CONSTRUCTORS
 
 		//default
-		explicit Vector (const allocator_type& alloc = allocator_type()) : _first(0), _size(0), _capacity(0), _allocator(alloc) {}
+		explicit Vector (const allocator_type& alloc = allocator_type())
+				: _first(0), _size(0), _capacity(0), _allocator(alloc) {}
 
 		//fill
 		explicit Vector (size_type n, const value_type& val = value_type(),
-                 const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), _allocator(alloc)
+			const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n), _allocator(alloc)
 		{
 			_first = _allocator.allocate(n);
 			for(size_type i = 0; i < n; i++)
@@ -185,8 +219,10 @@ template< typename L>class RandomAccessIterator
 
 		//range
 		template <class InputIterator>
-        	 Vector (InputIterator first, InputIterator last,
-                 const allocator_type& alloc = allocator_type(), typename enable_if<!is_integral<InputIterator>::value>::type* = 0) : _allocator(alloc){
+			Vector (InputIterator first, InputIterator last,
+				const allocator_type& alloc = allocator_type(),
+				typename enable_if<!is_integral<InputIterator>::value>::type* = 0) : _allocator(alloc)
+		{
 			if (first > last)
 				throw std::length_error("Vector");
 			_size = last - first;
@@ -194,16 +230,18 @@ template< typename L>class RandomAccessIterator
 			_first = _allocator.allocate(_capacity);
 			for (difference_type i = 0; i < static_cast<difference_type>(_size); i++)
 				_allocator.construct(_first + i, *(first + i));
-		 }
+		}
 
 		//OPERATOR=
-		Vector& operator= (const Vector& x){
+		Vector& operator=(const Vector& x)
+		{
 			if (this == &x)
 				return *this;
 			for (size_type i = 0; i < _size; i++)
 				_allocator.destroy(_first + i);
 			this->_size = x._size;
-			if(_capacity < _size){
+			if(_capacity < _size)
+			{
 				if (_capacity != 0)
 					_allocator.deallocate(_first, _capacity);
 				_capacity = _size;
@@ -215,7 +253,8 @@ template< typename L>class RandomAccessIterator
 		}
 
 		//copy
-		Vector (const Vector& x) :  _size(0), _capacity(0){
+		Vector (const Vector& x) :  _size(0), _capacity(0)
+		{
 			*this = x;
 		}
 
@@ -228,54 +267,64 @@ template< typename L>class RandomAccessIterator
 				_allocator.deallocate(_first, _capacity);
 		}
 
-
-
 		//ITERATORS
-		iterator begin(){
+		iterator begin()
+		{
 			return (iterator(_first));
 		}
-		const_iterator begin() const{
+		const_iterator begin() const
+		{
 			return (const_iterator(_first));
 		}
-		iterator end(){
+		iterator end()
+		{
 			return (iterator(_first + _size));
 		}
-		const_iterator end() const{
+		const_iterator end() const
+		{
 			return (const_iterator(_first + _size));
 		}
-		reverse_iterator rbegin(){
+		reverse_iterator rbegin()
+		{
 			return (reverse_iterator(end()));
 		}
-		const_reverse_iterator rbegin() const{
+		const_reverse_iterator rbegin() const
+		{
 			return (const_reverse_iterator(end()));
 		}
-		reverse_iterator rend(){
+		reverse_iterator rend()
+		{
 			return (reverse_iterator(begin()));
 		}
-		const_reverse_iterator rend() const{
+		const_reverse_iterator rend() const
+		{
 			return (const_reverse_iterator(begin()));
 		}
 
 		//CAPACITY
-
-
-		size_type size() const{
+		size_type size() const
+		{
 			return(_size);
 		}
-		size_type max_size() const{
+		size_type max_size() const
+		{
 			return(_allocator.max_size());
 		}
-
-		void reserve (size_type n){
+		void reserve (size_type n)
+		{
 			if (n < _capacity)
 				return;
 			pointer newarr = _allocator.allocate(n);
-			try{
+			try
+			{
 				for (size_type i = 0; i < _size; i++)
 					_allocator.construct(newarr + i, *(_first + i));
-			} catch (std::exception &e){
+			}
+			catch (std::exception &e)
+			{
 				size_type i = 0;
-				while (newarr + i != NULL && i < _size){
+				while (newarr + i != NULL && i < _size)
+				{
 					_allocator.destroy(newarr + i);
 					i++;
 				}
@@ -290,94 +339,109 @@ template< typename L>class RandomAccessIterator
 			_first = newarr;
 		}
 
-		void resize (size_type n, value_type val = value_type()){
-			if(n < _size){
+		void resize (size_type n, value_type val = value_type())
+		{
+			if(n < _size)
+			{
 				for(size_type i = n; i < _size; i++)
 					_allocator.destroy(_first + i);
 				_size = n;
 			}
-			else if (n > _size){
+			else if (n > _size)
+			{
 				if (_capacity < n)
 					this->reserve(_capacity * 2 > n ? _capacity * 2 : n);
-				for (size_type i = _size; i < n; i++){
+				for (size_type i = _size; i < n; i++)
+				{
 					_allocator.construct(_first + i, val);
 					_size++;
 				}
 			}
-
 		}
 
-		size_type capacity() const{
+		size_type capacity() const
+		{
 			return (_capacity);
 		}
-		bool empty() const{
+		bool empty() const
+		{
 			return(_size == 0);
 		}
 
-
 		//ELEMENT ACCESS
-
-
-		reference operator[] (size_type n){
+		reference operator[] (size_type n)
+		{
 			return(*(_first + n));
 		}
-		const_reference operator[] (size_type n) const{
+		const_reference operator[] (size_type n) const
+		{
 			return(*(_first + n));
 		}
 
-		reference at (size_type n){
+		reference at (size_type n)
+		{
 			if(n > _capacity)
 				throw std::out_of_range("Vector at out of range");
 			return(*(_first + n));
 		}
 
-		const_reference at (size_type n) const{
+		const_reference at (size_type n) const
+		{
 			if(n > _capacity)
 				throw std::out_of_range("Vector at out of range");
 			return(*(_first + n));
 		}
 
-		reference front(){
+		reference front()
+		{
 			return(*_first);
 		}
 
-		const_reference front() const{
+		const_reference front() const
+		{
 			return(*_first);
 		}
 
-		reference back(){
+		reference back()
+		{
 			return(*(_first + _size - 1));
 		}
 
-		const_reference back() const{
+		const_reference back() const
+		{
 			return(*(_first + _size - 1));
 		}
 
 		//MODIFIERS
 		template <class InputIterator>
-  			void assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = 0){
-				if(first > last)
-					throw std::logic_error("Vector");
-				difference_type count = last - first;
-				clear();
-				if (count > static_cast<difference_type>(capacity())){
-					_allocator.deallocate(_first, _capacity);
-					_first = _allocator.allocate(count);
-					_capacity = count;
-				}
-				iterator pos = begin();
-				while (first < last)
-				{
-					_allocator.construct(&(*pos), *first);
-					pos++;
-					first++;
-				}
-				_size = count;
-			}
-
-		void assign (size_type n, const value_type& val){
+		void assign (InputIterator first, InputIterator last,
+			typename enable_if<!is_integral<InputIterator>::value>::type* = 0)
+		{
+			if(first > last)
+				throw std::logic_error("Vector");
+			difference_type count = last - first;
 			clear();
-			if (n > _capacity){
+			if (count > static_cast<difference_type>(capacity()))
+			{
+				_allocator.deallocate(_first, _capacity);
+				_first = _allocator.allocate(count);
+				_capacity = count;
+			}
+			iterator pos = begin();
+			while (first < last)
+			{
+				_allocator.construct(&(*pos), *first);
+				pos++;
+				first++;
+			}
+			_size = count;
+		}
+
+		void assign (size_type n, const value_type& val)
+		{
+			clear();
+			if (n > _capacity)
+			{
 				_allocator.deallocate(_first, _capacity);
 				_first = _allocator.allocate(n);
 				_capacity = n;
@@ -387,24 +451,28 @@ template< typename L>class RandomAccessIterator
 			_size = n;
 		}
 
-		void push_back (const value_type& val){
+		void push_back (const value_type& val)
+		{
 			if(_size == _capacity)
 				reserve(_capacity == 0 ? 1 : _capacity * 2);
 			_allocator.construct(_first + _size, val);
 			_size++;
 		}
 
-		void pop_back(){
+		void pop_back()
+		{
 			_allocator.destroy(_first + _size - 1);
 			_size--;
 		}
 
 		//single element
-		iterator insert (iterator position, const value_type& val){
+		iterator insert (iterator position, const value_type& val)
+		{
 			if (position < begin() || position > end())
 				throw std::logic_error("Vector");
 			difference_type start = position - begin();
-			if (_size == _capacity){
+			if (_size == _capacity)
+			{
 				_capacity = _capacity * 2 + (_capacity == 0);
 				pointer new_arr = _allocator.allocate(_capacity);
 				std::uninitialized_copy(begin(), position, iterator(new_arr));
@@ -417,8 +485,10 @@ template< typename L>class RandomAccessIterator
 				_size++;
 				_first = new_arr;
 			}
-			else {
-				for (size_type i = _size; i > static_cast<size_type>(start); i--){
+			else
+			{
+				for (size_type i = _size; i > static_cast<size_type>(start); i--)
+				{
 					_allocator.destroy(_first + i);
 					_allocator.construct(_first + i, *(_first + i - 1));
 				}
@@ -430,13 +500,15 @@ template< typename L>class RandomAccessIterator
 		}
 
 		//fill
-		void insert (iterator position, size_type n, const value_type& val){
+		void insert (iterator position, size_type n, const value_type& val)
+		{
 			if (n == 0)
 				return ;
 			else if (max_size() - _size < n)
 				throw std::length_error("Vector");
 			difference_type start = position - begin();
-			if (_size + n > _capacity){
+			if (_size + n > _capacity)
+			{
 				size_type new_cap = _capacity * 2 >= _size + n ? _capacity * 2 : _size + n;
 				pointer new_arr = _allocator.allocate(new_cap);
 				std::uninitialized_copy(begin(), position, iterator(new_arr));
@@ -450,12 +522,15 @@ template< typename L>class RandomAccessIterator
 				_capacity = new_cap;
 				_first = new_arr;
 			}
-			else {
-				for (size_type i = _size; i > static_cast<size_type>(start); i--) {
+			else
+			{
+				for (size_type i = _size; i > static_cast<size_type>(start); i--)
+				{
 					_allocator.destroy(_first + i + n - 1);
 					_allocator.construct(_first + i + n - 1, *(_first + i - 1));
 				}
-				for (size_type i = 0; i < n; i++){
+				for (size_type i = 0; i < n; i++)
+				{
 					_allocator.destroy(_first + i + start);
 					_allocator.construct(_first + i + start, val);
 				}
@@ -465,21 +540,25 @@ template< typename L>class RandomAccessIterator
 
 		//range
 		template <class InputIterator>
-    		void insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = 0){
-
-				if (position < begin() || position > end() || first > last)
+		void insert (iterator position, InputIterator first, InputIterator last,
+			typename enable_if<!is_integral<InputIterator>::value>::type* = 0)
+		{
+			if (position < begin() || position > end() || first > last)
 				throw std::logic_error("Vector");
 			size_type start = static_cast<size_type>(position - begin());
 			size_type count = static_cast<size_type>(last - first);
-			if (_size + count > _capacity) {
+			if (_size + count > _capacity)
+			{
 				size_type new_cap = _capacity * 2 >= _size + count ? _capacity * 2 : _size + count;
 				pointer new_arr = _allocator.allocate(new_cap);
 				std::uninitialized_copy(begin(), position, iterator(new_arr));
-				try {
+				try
+				{
 					for (size_type i = 0; i < static_cast<size_type>(count); i++, first++)
 						_allocator.construct(new_arr + start + i, *first);
 				}
-				catch (...){
+				catch (...)
+				{
 					for (size_type i = 0; i < count + start; ++i)
 						_allocator.destroy(new_arr + i);
 					_allocator.deallocate(new_arr, new_cap);
@@ -493,51 +572,25 @@ template< typename L>class RandomAccessIterator
 				_capacity = new_cap;
 				_first = new_arr;
 			}
-			else {
-				for (size_type i = _size; i > static_cast<size_type>(start); i--) {
+			else
+			{
+				for (size_type i = _size; i > static_cast<size_type>(start); i--)
+				{
 					_allocator.destroy(_first + i + count - 1);
 					_allocator.construct(_first + i + count - 1, *(_first + i - 1));
 				}
-				for (size_type i = 0; i < static_cast<size_type>(count); i++, first++) {
+				for (size_type i = 0; i < static_cast<size_type>(count); i++, first++)
+				{
 					_allocator.destroy(_first + i + count);
 					_allocator.construct(_first + start + i, *first);
 				}
 				_size += count;
 			}
 		}
-//				if (position < begin() || position > end() || first > last)
-//					throw std::logic_error("Vector");
-//				difference_type start = position - begin();
-//				difference_type count = last - first;
-//				if (_size + count > _capacity){
-//					size_type new_cap = _capacity * 2 >= _size + count ? _capacity * 2 : _size + count;
-//					pointer new_arr = _allocator.allocate(new_cap);
-//					std::uninitialized_copy(begin(), position, iterator(new_arr));
-//					for (size_type i = 0; i < count; i++, first++)
-//						_allocator.construct(new_arr + start + i, *first);
-//					std::uninitialized_copy(position, end(), iterator(new_arr + start + count));
-//					for (size_type i = 0; i < _size; i++)
-//						_allocator.destroy(_first + i);
-//					_allocator.deallocate(_first, _capacity);
-//					_size += count;
-//					_capacity = new_cap;
-//					_first = new_arr;
-//				}
-//				else{
-//					for (size_type i = _size; i > start; i--){
-//						_allocator.destroy(_first + i + count - 1);
-//						_allocator.construct(_first + i + count - 1, *(_first + i - 1));
-//					}
-//					for (size_type i = 0; i < count; i++, first++){
-//						_allocator.destroy(_first + i + count);
-//						_allocator.construct(_first + start + i, *first);
-//					}
-//					_size += count;
-//				}
-//			}
-//
+
 		//single element
-		iterator erase (iterator position){
+		iterator erase (iterator position)
+		{
 			size_type d = static_cast<size_type>(std::distance(begin(), position));
 			for (size_type i = d; i < _size - 1; ++i){
 				_allocator.destroy(_first + i);
@@ -549,16 +602,19 @@ template< typename L>class RandomAccessIterator
 		}
 
 		//range
-		iterator erase (iterator first, iterator last){
+		iterator erase (iterator first, iterator last)
+		{
 			difference_type start = std::distance(begin(), first);
 			difference_type need_to_copy = std::distance(last, end());
 			bool last_is_end = (last == end());
-			while (first != last){
+			while (first != last)
+			{
 				_allocator.destroy(&(*first));
 				first++;
 			}
 			size_type i = start;
-			while (last < end()){
+			while (last < end())
+			{
 				if (this->_first + start)
 					_allocator.destroy(_first + i);
 				_allocator.construct(_first + i, *last);
@@ -571,29 +627,32 @@ template< typename L>class RandomAccessIterator
 			return last_is_end ? end() : iterator(_first + start);
 		}
 
-		void swap (Vector& x){
+		void swap (Vector& x)
+		{
 			std::swap(_first, x._first);
 			std::swap(_size, x._size);
 			std::swap(_capacity, x._capacity);
 			std::swap(_allocator, x._allocator);
-
 		}
 
-		void clear(){
+		void clear()
+		{
 			for (size_type i = 0; i < _size; i++)
 				_allocator.destroy(_first + i);
 			_size = 0;
 		}
 
 		//ALLOCATOR
-		allocator_type get_allocator() const{
+		allocator_type get_allocator() const
+		{
 			return(_allocator);
 		}
-};
+};//vector
 
-	template< class T, class Alloc >
-	bool operator==( const Vector<T,Alloc>& lhs,
-			                 const Vector<T,Alloc>& rhs ){
+	template<class T, class Alloc>
+	bool operator==(const Vector<T,Alloc>& lhs,
+					const Vector<T,Alloc>& rhs )
+	{
 		if (lhs.size() != rhs.size())
 			return false;
 		for (size_t i = 0; i < rhs.size(); i++)
@@ -602,42 +661,50 @@ template< typename L>class RandomAccessIterator
 		return true;
 	}
 
-	template< class T, class Alloc >
-	bool operator!=( const Vector<T,Alloc>& lhs,
-		                 const Vector<T,Alloc>& rhs ){
+	template<class T, class Alloc>
+	bool operator!=(const Vector<T,Alloc>& lhs,
+					const Vector<T,Alloc>& rhs)
+	{
 		return !(lhs == rhs);
 	}
 
-	template< class T, class Alloc >
+	template<class T, class Alloc>
 	bool operator<( const Vector<T,Alloc>& lhs,
-		                const Vector<T,Alloc>& rhs ){
-		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+					const Vector<T,Alloc>& rhs)
+	{
+		return ft::lexicographical_compare(lhs.begin(),
+					lhs.end(), rhs.begin(), rhs.end());
 	}
 
-	template< class T, class Alloc >
-	bool operator<=( const Vector<T,Alloc>& lhs,
-		                 const Vector<T,Alloc>& rhs ){
+	template<class T, class Alloc>
+	bool operator<=(const Vector<T,Alloc>& lhs,
+					const Vector<T,Alloc>& rhs)
+	{
 		return !(lhs > rhs);
 	}
 
 	template< class T, class Alloc >
 	bool operator>( const Vector<T,Alloc>& lhs,
-		                const Vector<T,Alloc>& rhs ){
+					const Vector<T,Alloc>& rhs)
+	{
 		return rhs < lhs;
 	}
 
 	template< class T, class Alloc >
-	bool operator>=( const Vector<T,Alloc>& lhs,
-		                 const Vector<T,Alloc>& rhs ){
+	bool operator>=(const Vector<T,Alloc>& lhs,
+					const Vector<T,Alloc>& rhs )
+	{
 		return !(lhs < rhs);
 	}
 
-};
+};//ft
 
 
-namespace std{
-	template< class T, class Alloc >
-	void swap(ft::Vector<T,Alloc>& lhs, ft::Vector<T,Alloc>& rhs ) {
+namespace std
+{
+	template<class T, class Alloc>
+	void swap(ft::Vector<T,Alloc>& lhs, ft::Vector<T,Alloc>& rhs)
+	{
 		lhs.swap(rhs);
 	}
 }
