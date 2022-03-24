@@ -9,7 +9,7 @@ namespace ft{
 
 
 
-template < class T, class Allocator = std::allocator<T> > class Vector
+template < typename T, class Allocator = std::allocator<T> > class Vector
 {
 
 template< typename L>class RandomAccessIterator
@@ -18,7 +18,7 @@ template< typename L>class RandomAccessIterator
 		typedef	typename iterator_traits<L*>::value_type	value_type;
 		typedef	typename iterator_traits<L*>::pointer	pointer;
 		typedef	typename iterator_traits<L*>::reference	reference;
-		typedef	typename iterator_traits<L*>::difference_type	difference_type;
+		typedef	typename iterator_traits<L*>::difference_type	difference_type; //dist betw iterators
 		typedef pointer iterator_type;
 		//this is for std::functions
 		typedef	std::random_access_iterator_tag iterator_category;
@@ -44,26 +44,26 @@ template< typename L>class RandomAccessIterator
 		}
 
 		//OPERATORS
-		RandomAccessIterator & operator++()
+		RandomAccessIterator &operator++() //++val
 		{
 			++_ptr;
 			return *this;
 		}
 
-		RandomAccessIterator operator++(int)
+		RandomAccessIterator operator++(int) //val++
 		{
 			RandomAccessIterator tmp(*this);
 			++_ptr;
 			return tmp;
 		}
 
-		RandomAccessIterator & operator--()
+		RandomAccessIterator &operator--() //--val
 		{
 			--_ptr;
 			return *this;
 		}
 
-		RandomAccessIterator  operator--(int)
+		RandomAccessIterator  operator--(int) //val--
 		{
 			RandomAccessIterator tmp = *this;
 			--_ptr;
@@ -80,13 +80,13 @@ template< typename L>class RandomAccessIterator
 			return _ptr - a;
 		}
 
-		RandomAccessIterator & operator+=(const difference_type & a)
+		RandomAccessIterator &operator+=(const difference_type & a)
 		{
 			_ptr += a;
 			return (*this);
 		}
 
-		RandomAccessIterator & operator-=(const difference_type & a)
+		RandomAccessIterator &operator-=(const difference_type & a)
 		{
 			_ptr -= a;
 			return (*this);

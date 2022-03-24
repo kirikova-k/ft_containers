@@ -22,6 +22,8 @@
 		"string_view": "cpp",
 		"type_traits": "cpp",
 		"unordered_map": "cpp",
-		"*.ipp": "cpp"
+		"*.ipp": "cpp",
+		"algorithm": "cpp",
+		"stdexcept": "cpp"
 	}
 }
