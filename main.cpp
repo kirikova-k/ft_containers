@@ -94,6 +94,23 @@ void vector_tests()
 
 	std::vector<int> anothervec(2,400);
 
+	myvector.insert (it+2,anothervec.end(),anothervec.begin());
+	try
+	{
+		myvector1.insert (ft_it+2,anothervec.end(),anothervec.begin());
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n'; //Vector: Invalid iterator
+	}
+
+	std::cout << "std::vector contains: " << myvector[0] << " " <<  myvector[1]
+		<< " " << myvector[2] << " " << myvector[3] << " " << myvector[4] <<
+		"... size: " << myvector.size() << "\n";
+	std::cout << "ft::Vector contains: " << myvector1[0] << " " <<  myvector1[1]
+		<< " " << myvector1[2] << " " << myvector1[3] << " " << myvector1[4] <<
+		"... size: " << myvector1.size() << "\n";
+
 	myvector.insert (it+2,anothervec.begin(),anothervec.end());
 	myvector1.insert (ft_it+2,anothervec.begin(),anothervec.end());
 
@@ -103,17 +120,7 @@ void vector_tests()
 	std::cout << "ft::Vector contains: " << myvector1[0] << " " <<  myvector1[1]
 		<< " " << myvector1[2] << " " << myvector1[3] << " " << myvector1[4] <<
 		"... size: " << myvector1.size() << "\n";
-
-	int myarray [] = { 501,502,503 };
-	myvector.insert (myvector.begin(), myarray, myarray+3);
-
-	std::cout << "myvector contains:";
-	for (it=myvector.begin(); it<myvector.end(); it++)
-	std::cout << ' ' << *it;
-	std::cout << '\n';
 	}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
-
-
 }
 
 

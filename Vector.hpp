@@ -544,7 +544,7 @@ template< typename L>class RandomAccessIterator
 			typename enable_if<!is_integral<InputIterator>::value>::type* = 0)
 		{
 			if (position < begin() || position > end() || first > last)
-				throw std::logic_error("Vector");
+				throw std::logic_error("Vector: Invalid iterator");
 			size_type start = static_cast<size_type>(position - begin());
 			size_type count = static_cast<size_type>(last - first);
 			if (_size + count > _capacity)
