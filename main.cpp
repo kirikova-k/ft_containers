@@ -10,7 +10,7 @@ void vector_tests()
 {
 	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
 
-	std::cout <<VIOLET<< "\t\t\t\tVECTOR\nconstructors/begin/end tests\n" <<DEFAULT;
+	std::cout <<VIOLET<< "\t\t\t\tV E C T O R\nconstructors/begin/end tests\n" <<DEFAULT;
 	std::vector<int> first;                                // empty vector of ints
 	std::vector<int> second (4,100);                       // four ints with value 100
 	std::vector<int> third (second.begin(),second.end());  // iterating through second
@@ -40,11 +40,11 @@ void vector_tests()
 	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
 	std::cout <<VIOLET<< "\nsize/operator= tests\n" <<DEFAULT;
 
-	std::vector<int> vec1 (3,0);		ft::Vector<int> vec3 (3,0);
-	std::vector<int> vec2 (5,0);		ft::Vector<int> vec4 (5,0);
+	std::vector<int> vec1 (3,0);			ft::Vector<int> vec3 (3,0);
+	std::vector<int> vec2 (5,0);			ft::Vector<int> vec4 (5,0);
 
-	vec1 = vec2;						vec3 = vec4;
-	vec2 = std::vector<int>();			vec4 = ft::Vector<int>();
+	vec1 = vec2;							vec3 = vec4;
+	vec2 = std::vector<int>();				vec4 = ft::Vector<int>();
 	std::cout << "std::vector:\nSize of vec1: " << int(vec1.size()) << '\n';
 	std::cout << "Size of vec2: " << int(vec2.size()) << '\n';
 	std::cout << "ft::Vector:\nSize of vec3: " << int(vec3.size()) << '\n';
@@ -53,14 +53,13 @@ void vector_tests()
 
 	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
 	std::cout <<VIOLET<< "\nempty/front/back/capacity tests\n" <<DEFAULT;
-	std::vector<int> vec1;				ft::Vector<int> vec2;
-
-	std::cout << "std::vector:\nis vec1 Empty? " << int(vec1.empty()) << '\n';
-	std::cout << "ft::Vector:\nis vec2 Empty? " << int(vec2.empty()) << '\n';
-	vec1.push_back(111);	vec2.push_back(111);
-	vec1.push_back(222);	vec2.push_back(222);
-	std::cout << "std::vector:\nis vec1 Empty? " << int(vec1.empty()) << '\n';
-	std::cout << "ft::Vector:\nis vec2 Empty? " << int(vec2.empty()) << '\n';
+	std::vector<int> vec1;					ft::Vector<int> vec2;
+	std::cout  << "std::vector:\nis vec1 Empty? " << std::boolalpha << vec1.empty() << '\n';
+	std::cout << "ft::Vector:\nis vec2 Empty? " << std::boolalpha << vec2.empty() << '\n';
+	vec1.push_back(111);					vec2.push_back(111);
+	vec1.push_back(222);					vec2.push_back(222);
+	std::cout << "std::vector:\nis vec1 Empty? " << std::boolalpha << vec1.empty() << '\n';
+	std::cout << "ft::Vector:\nis vec2 Empty? " << vec2.empty() << '\n';
 	std::cout << "std::vector:\ncapacity of vec1: " << int(vec1.capacity()) << '\n';
 	std::cout << "ft::Vector:\ncapacity of vec2: " << int(vec2.capacity()) << '\n';
 	std::cout << "std::vector:\nfirst of vec1: " << int(vec1.front()) << '\n';
@@ -95,14 +94,14 @@ void vector_tests()
 	std::vector<int> anothervec(2,400);
 
 	myvector.insert (it+2,anothervec.end(),anothervec.begin());
-	try
-	{
+		try
+		{
 		myvector1.insert (ft_it+2,anothervec.end(),anothervec.begin());
-	}
-	catch(const std::exception& e)
-	{
+		}
+		catch(const std::exception& e)
+		{
 		std::cerr << e.what() << '\n'; //Vector: Invalid iterator
-	}
+		}
 
 	std::cout << "std::vector contains: " << myvector[0] << " " <<  myvector[1]
 		<< " " << myvector[2] << " " << myvector[3] << " " << myvector[4] <<
@@ -121,11 +120,120 @@ void vector_tests()
 		<< " " << myvector1[2] << " " << myvector1[3] << " " << myvector1[4] <<
 		"... size: " << myvector1.size() << "\n";
 	}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
-}
 
+	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+	std::cout <<VIOLET<< "\nmax_size/reserve/resize tests\n" <<DEFAULT;
+	std::vector<int> myvector (3,100);			ft::Vector<int> myvector1 (3,100);
+	std::cout << "std::vector max_size: " << myvector.max_size() << "\n";
+	std::cout << "ft::Vector max_size: " << myvector1.max_size() << "\n";
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.reserve(10000);								myvector1.reserve(10000);
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.resize(100);						myvector1.resize(100);
+	myvector.resize(1);							myvector1.resize(1);
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+
+	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+		std::cout <<VIOLET<< "\nat/operator >< = != tests\n" <<DEFAULT;
+		std::vector<int> vec(5);				std::vector<int> vec1(10, 2);
+		if (vec == vec1)
+			std::cout << "std:: vec = vec1\n";
+		if (vec != vec1)
+			std::cout << "std:: vec != vec1\n";
+		if (vec > vec1)
+			std::cout << "std:: vec > vec1\n";
+		if (vec < vec1)
+			std::cout << "std:: vec < vec1\n";
+		ft::Vector<int> vec2(1 , 20);			ft::Vector<int> vec3(3, 10);
+		if (vec2 == vec3)
+			std::cout << "ft:: vec2 = vec3\n";
+		if (vec2 != vec3)
+			std::cout << "ft:: vec2 != vec3\n";
+		if (vec2 > vec3)
+			std::cout << "ft:: vec2 > vec3\n";
+		if (vec2 < vec3)
+			std::cout << "ft:: vec2 < vec3\n";
+
+		try
+		{
+			std::cout << "std::vector: ";
+			std::cout << vec1.at(8) << "\n";
+			std::cout << vec1.at(20) << "\n";
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		try
+		{
+			std::cout << "ft::vector: ";
+			std::cout << vec3.at(2) << "\n";
+			std::cout << vec3.at(20) << "\n";
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+
+	{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+	std::cout <<VIOLET<< "\nerase/clear/assign/push_back/pop_back tests\n" <<DEFAULT;
+	std::vector<int> myvector (3,100);			ft::Vector<int> myvector1 (3,100);
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.erase(myvector.begin());			myvector1.erase(myvector1.begin());
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.clear();							myvector1.clear();
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.assign(5, 10);			myvector1.assign(5, 10);
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	myvector.push_back(1);			myvector1.push_back(1);
+	myvector.push_back(1);			myvector1.push_back(1);
+	myvector.pop_back();			myvector1.pop_back();
+	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
+	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
+	}
+
+}
 
 
 int main()
 {
-	vector_tests();
+		vector_tests();
+
+	// std::string n;
+	// std::cout <<VIOLET<< "PRESS "<<DEFAULT<< "v"<<VIOLET<< " for testing vector\n";
+	// std::cout << "      "<<DEFAULT<< "s"<<VIOLET<< " for testing stack\n";
+	// std::cout << "      "<<DEFAULT<< "m"<<VIOLET<< " for testing map\n";
+	// std::cout << "      "<<DEFAULT<< "set"<<VIOLET<< " for testing set\n"<<DEFAULT;
+	// std::cin >> n;
+	// 	std::string arr[4] = {"v", "s", "m", "set"};
+	// int i = 0;
+	// while (i < 4 && n != arr[i])
+	// 	i++;
+	// enum Level {v, s, m, set};
+	// switch (i)
+	// {
+	// 	case v:
+	// 		vector_tests();
+	// 	case s:
+	// 		// stack_tests();
+	// 	case m:
+	// 		// map_tests();
+	// 	case set:
+	// 		// set_tests();
+	// 		break;
+	// 	default:
+	// 		// vector_tests();
+	// 		// stack_tests();
+	// 		// map_tests();
+	// 		// set_tests();
+	// }
 }

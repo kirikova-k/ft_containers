@@ -647,6 +647,7 @@ template< typename L>class RandomAccessIterator
 		{
 			return(_allocator);
 		}
+
 };//vector
 
 	template<class T, class Alloc>
@@ -709,3 +710,7 @@ namespace std
 	}
 }
 #endif
+
+// uninitialized_copy
+//Создает копии элементов в диапазоне [first,last) в диапазоне,
+// начиная с результата , и возвращает итератор к последнему элементу в целевом диапазоне.

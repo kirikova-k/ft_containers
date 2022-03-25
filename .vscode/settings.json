@@ -24,6 +24,11 @@
 		"unordered_map": "cpp",
 		"*.ipp": "cpp",
 		"algorithm": "cpp",
-		"stdexcept": "cpp"
+		"stdexcept": "cpp",
+		"bitset": "cpp",
+		"iomanip": "cpp",
+		"iosfwd": "cpp",
+		"sstream": "cpp",
+		"stack": "cpp"
 	}
 }
