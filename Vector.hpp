@@ -592,7 +592,8 @@ template< typename L>class RandomAccessIterator
 		iterator erase (iterator position)
 		{
 			size_type d = static_cast<size_type>(std::distance(begin(), position));
-			for (size_type i = d; i < _size - 1; ++i){
+			for (size_type i = d; i < _size - 1; ++i)
+			{
 				_allocator.destroy(_first + i);
 				_allocator.construct(_first + i, *(_first + i + 1));
 			}

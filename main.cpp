@@ -1,8 +1,11 @@
 #include <iostream>
 #include "Vector.hpp"
+#include "Stack.hpp"
 #include "utility.hpp"
 #include "reverse_iterator.hpp"
 #include <vector>
+#include <deque>
+#include <stack>
 #define VIOLET "\033[1;35m"
 #define DEFAULT "\033[0;37m"
 
@@ -199,14 +202,62 @@ void vector_tests()
 	myvector.pop_back();			myvector1.pop_back();
 	std::cout << "std::vector size/capacity: " << myvector.size() << " " << myvector.capacity() << "\n";
 	std::cout << "ft::Vector size/capacity: " << myvector1.size()<< " " << myvector1.capacity() << "\n";
-	}
-
+	}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
 }
+
+void stack_tests()
+{//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
+	std::cout <<VIOLET<< "\n\t\t\t\tS T A C K\nconstructors/size/push/pop/operator >< = != tests\n" <<DEFAULT;
+	std::stack<int> first;                    // empty stack
+	ft::Stack<int> first1;
+
+
+	std::cout << "std::stack:\nis first Empty? " << std::boolalpha <<first.empty() << std::endl;
+	std::cout << "ft::Stack:\nis first1 Empty? "<< std::boolalpha <<first1.empty() << std::endl;
+	first.push(1); first.push(2); first.push(3); first.push(4);
+	first1.push(1); first1.push(2); first1.push(3); first1.push(4);
+
+	std::cout << "size of first: " << first.size() << '\n';
+	std::cout << "size of first1: " << first1.size() << '\n';
+
+	std::stack<int> second(first);		// stack initialized to copy of first
+	ft::Stack<int> second1(first1);		//4 3 2 1
+
+	std::cout << "top of second: " << second.top() << '\n';
+	std::cout << "top of second1: " << second1.top() << '\n';
+
+	second.pop(); //3 2 1
+	second1.pop(); //3 2 1
+
+	std::cout << "top of second: " << second.top() << '\n';
+	std::cout << "top of second1: " << second1.top() << '\n';
+
+
+	if (first == second)						//first/4 3 2 1  second/3 2 1
+		std::cout << "std:: first = second\n";
+	if (first != second)
+		std::cout << "std:: first != second\n";
+	if (first > second)
+		std::cout << "std:: first > second\n";
+	if (first < second)
+		std::cout << "std:: first < second\n";
+
+	if (first1 == second1)
+		std::cout << "ft:: first1 = second1\n";
+	if (first1 != second1)
+		std::cout << "ft:: first1 != second1\n";
+	if (first1 > second1)
+		std::cout << "ft:: first1 > second1\n";
+	if (first1 < second1)
+		std::cout << "ft:: first1 < second1\n";
+
+}//~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/~/
 
 
 int main()
 {
 		vector_tests();
+		stack_tests();
 
 	// std::string n;
 	// std::cout <<VIOLET<< "PRESS "<<DEFAULT<< "v"<<VIOLET<< " for testing vector\n";

@@ -39,7 +39,7 @@ template <class Iterator> class reverse_iterator
 			--base_iterator;
 			return(*this);
 		}
-		reverse_iterator  operator++(int)
+		reverse_iterator operator++(int)
 		{
 			reverse_iterator temp = *this;
 			++(*this);
