@@ -7,6 +7,16 @@ typedef struct s_node
 	struct s_node *right;
 }node;
 
+void free_tree(node *p)
+{
+	if (p != NULL)
+	{
+		free_tree(p->left);
+		free_tree(p->right);
+		free(p);
+	}
+}
+
 void tree_print(node *p)
 {
 	if (p != NULL)
@@ -41,6 +51,7 @@ int main ()
 
 	node *p = NULL;
 
+
 	p = tree_add(p, 5);
 	p = tree_add(p, 4);
 	p = tree_add(p, 3);
@@ -51,6 +62,6 @@ int main ()
 	p = tree_add(p, 6);
 	tree_print(p);
 
-
+	free_tree(p);
 
 }
