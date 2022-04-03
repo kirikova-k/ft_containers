@@ -51,15 +51,20 @@ int main ()
 
 	node *p = NULL;
 
-
-	p = tree_add(p, 5);
-	p = tree_add(p, 4);
-	p = tree_add(p, 3);
-	p = tree_add(p, 8);
-	p = tree_add(p, 1);
-	p = tree_add(p, 2);
-	p = tree_add(p, 7);
-	p = tree_add(p, 6);
+	int n = 15;
+	for (int i = 0; i < n; i++)
+	{
+		// int k = ;
+		p = tree_add(p, rand() % 101);
+	}
+	// p = tree_add(p, 5);
+	// p = tree_add(p, 4);
+	// p = tree_add(p, 3);
+	// p = tree_add(p, 8);
+	// p = tree_add(p, 1);
+	// p = tree_add(p, 2);
+	// p = tree_add(p, 7);
+	// p = tree_add(p, 6);
 	tree_print(p);
 
 	free_tree(p);
