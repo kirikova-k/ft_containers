@@ -11,8 +11,8 @@ class Node
 		Node *RightNode;
 		Node *Parrent;
 
-		Node() {Parrent = nullptr; LeftNode = nullptr; RightNode = nullptr; Data = 0;}
-		Node(int data) {Parrent = nullptr; LeftNode = nullptr; RightNode = nullptr; Data = data;}
+		Node() {Parrent = NULL; LeftNode = NULL; RightNode = NULL; Data = 0;}
+		Node(int data) {Parrent = NULL; LeftNode = NULL; RightNode = NULL; Data = data;}
 		~Node() {}
 };
 
