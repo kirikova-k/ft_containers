@@ -81,6 +81,19 @@ public:
 		return curr != NULL;
 	}
 
+	Node *find_node(int key)
+	{
+		Node *curr = root;
+		while (curr && curr->Data != key)
+		{
+			if (curr->Data > key)
+				curr = curr->LeftNode;
+			else
+				curr = curr->RightNode;
+		}
+			return curr ? curr : NULL;
+	}
+
 	void insert(int key)
 	{
 		if (!root)
@@ -181,16 +194,62 @@ public:
 		erase(replace_val);
 		curr->Data = replace_val;
 
+
+
+		// Node *replace = this->succesor(curr);
+		// if (curr->Parrent)
+		// 	replace->Parrent = curr->Parrent;
+		// replace->LeftNode = curr->LeftNode;
+		// replace->RightNode = curr->RightNode;
+		// delete curr;
+		// tree_size--;
+		// return;
+
+
 	}
 
 	int size() {return tree_size;}
-	// Node *tree_max()
-	// {
-	// 	Node *curr = root;
-	// 	while (curr)
-	// 		curr
 
-	// }
+	Node *tree_max(Node *curr)
+	{
+		while (curr->RightNode)
+			curr = curr->RightNode;
+		return curr;
+	}
+
+	Node *tree_min(Node *curr)
+	{
+		while (curr->LeftNode)
+			curr = curr->LeftNode;
+		return curr;
+	}
+
+	Node *succesor(Node *curr)
+	{
+		if (curr->RightNode)
+			return (this->tree_min(curr->RightNode));
+		Node *tmp = curr->Parrent;
+		while (tmp && curr == tmp->RightNode)
+		{
+			curr = tmp;
+			tmp = tmp->Parrent;
+		}
+		return tmp;
+	}
+
+		Node *predecesor(Node *curr)
+	{
+		if (curr->LeftNode)
+			return (this->tree_max(curr->LeftNode));
+		Node *tmp = curr->Parrent;
+		while (tmp && curr == tmp->LeftNode)
+		{
+			curr = tmp;
+			tmp = tmp->Parrent;
+		}
+		return tmp;
+	}
+
 };
 
 #endif
