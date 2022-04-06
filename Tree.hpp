@@ -142,8 +142,8 @@ public:
 			return;
 		if (curr->LeftNode == NULL || curr->RightNode == NULL)
 		{
-			if (curr->LeftNode == NULL && curr->RightNode == NULL) //если это лист
-			{
+			if (curr->LeftNode == NULL && curr->RightNode == NULL)
+			{// case 1: no child
 				if (curr == root)
 				{
 					root = NULL;
@@ -155,7 +155,7 @@ public:
 				else
 					curr->Parrent->RightNode = NULL;
 			}
-			else if (curr->LeftNode == NULL)
+			else if (curr->LeftNode == NULL) //case 2: left child
 			{//вместо curr подвешивается его правое поддерево
 				if (curr == root)
 				{
@@ -168,7 +168,7 @@ public:
 					parent_tmp->RightNode = curr->RightNode;
 				curr->RightNode->Parrent = parent_tmp;
 			}
-			else if (curr->RightNode == NULL)
+			else if (curr->RightNode == NULL)//case 3: right child
 			{//вместо curr подвешивается его левое поддерево
 				if (curr == root)
 				{
@@ -184,28 +184,29 @@ public:
 			delete curr;
 			tree_size--;
 			return;
-		}
+		}//case 4: 2 child
 		//У элемента есть два потомка, тогда на место элемента поставим
 		//наименьший элемент из его правого поддерева
-		Node *replace = curr->RightNode;
-		while (replace->LeftNode)
-			replace = replace->LeftNode;
-		int replace_val = replace->Data;
-		erase(replace_val);
-		curr->Data = replace_val;
-
-
-
-		// Node *replace = this->succesor(curr);
-		// if (curr->Parrent)
-		// 	replace->Parrent = curr->Parrent;
-		// replace->LeftNode = curr->LeftNode;
-		// replace->RightNode = curr->RightNode;
-		// delete curr;
-		// tree_size--;
-		// return;
-
-
+		Node *replace = this->succesor(curr);
+		Node *replace_copy = new Node(replace);
+		erase(replace->Data);
+		replace_copy->LeftNode = curr->LeftNode;
+		replace_copy->RightNode = curr->RightNode;
+		if (curr->Parrent)
+			replace_copy->Parrent = curr->Parrent;
+		if (parent_tmp && parent_tmp->LeftNode == curr)
+			parent_tmp->LeftNode = replace_copy;
+		if (parent_tmp && parent_tmp->RightNode == curr)
+			parent_tmp->RightNode = replace_copy;
+		if (curr->LeftNode)
+			curr->LeftNode->Parrent = replace_copy;
+		if (curr->RightNode)
+				curr->RightNode->Parrent = replace_copy;
+		if (curr == root)
+			root = replace_copy;
+		delete curr;
+		tree_size--;
+		return;
 	}
 
 	int size() {return tree_size;}
