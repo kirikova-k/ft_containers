@@ -1,12 +1,13 @@
 #include <iostream>
-#include "Tree.hpp"
+// #include "Tree.hpp"
+#include "RBTree.hpp"
 
 int main()
 {
 	int s[] = {6, 3, 7, 8, 2, 10, 4, 1, 12, 20, 9, 5};
 
 	Tree tree;
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 11; i++)
 	{
 		tree.insert(s[i]);
 	}
@@ -22,6 +23,8 @@ int main()
 	tree.erase(20);
 	tree.print_like_tree();
 	tree.erase(10);
+	tree.erase(7);
+	tree.print_like_tree();
 	tree.print_like_tree();
 
 	// Node *tmp = tree.find_node(10);
