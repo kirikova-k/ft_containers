@@ -10,22 +10,23 @@ int main()
 	for (int i = 0; i < 11; i++)
 	{
 		tree.insert(s[i]);
+		tree.print_like_tree();
 	}
 
-	// tree.print_like_tree();
+	tree.print_like_tree();
 	// tree.erase(1);
 	// tree.print_like_tree();
-	tree.erase(6);
-	tree.insert(6);
-	tree.print_like_tree();
-	tree.erase(3);
-	tree.print_like_tree();
-	tree.erase(20);
-	tree.print_like_tree();
-	tree.erase(10);
-	tree.erase(7);
-	tree.print_like_tree();
-	tree.print_like_tree();
+	// tree.erase(6);
+	// tree.insert(6);
+	// tree.print_like_tree();
+	// tree.erase(3);
+	// tree.print_like_tree();
+	// tree.erase(20);
+	// tree.print_like_tree();
+	// tree.erase(10);
+	// tree.erase(7);
+	// tree.erase(8);
+	// tree.print_like_tree();
 
 	// Node *tmp = tree.find_node(10);
 	// std::cout << tree.predecesor(tmp)->Data << "\n";
