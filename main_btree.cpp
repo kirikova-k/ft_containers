@@ -7,18 +7,18 @@ int main()
 	int s[] = {6, 3, 7, 8, 2, 10, 4, 1, 12, 20, 9, 5};
 
 	Tree tree;
-	for (int i = 0; i < 11; i++)
+	for (int i = 0; i < 12; i++)
 	{
 		tree.insert(s[i]);
-		tree.print_like_tree();
+		// tree.print_like_tree();
 	}
 
 	tree.print_like_tree();
-	// tree.erase(1);
-	// tree.print_like_tree();
-	// tree.erase(6);
+	tree.erase(1);
+	tree.print_like_tree();
+	tree.erase(6);
 	// tree.insert(6);
-	// tree.print_like_tree();
+	tree.print_like_tree();
 	// tree.erase(3);
 	// tree.print_like_tree();
 	// tree.erase(20);
@@ -26,7 +26,7 @@ int main()
 	// tree.erase(10);
 	// tree.erase(7);
 	// tree.erase(8);
-	// tree.print_like_tree();
+	tree.print_like_tree();
 
 	// Node *tmp = tree.find_node(10);
 	// std::cout << tree.predecesor(tmp)->Data << "\n";
