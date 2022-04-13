@@ -286,7 +286,7 @@ class RBTree
 
 		void	copy_child(node_pointer my_node, node_pointer other)
 		{
-			if (other->left->is_nil && other->left->is_nil)
+			if (other &&other->left->is_nil)
 				my_node->left = _nil;
 			else
 			{
@@ -332,7 +332,7 @@ class RBTree
 			return (find_res == NULL ? end() : const_iterator(find_res));
 		}
 
-		ft::pair<iterator, bool> /*pohui*/ insert(value_type const &value)
+		ft::pair<iterator, bool> insert(value_type const &value)
 		{
 			node_pointer find_val = search(value, _root);
 			if (find_val)

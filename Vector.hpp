@@ -20,7 +20,6 @@ template< typename L>class RandomAccessIterator
 		typedef	typename iterator_traits<L*>::reference	reference;
 		typedef	typename iterator_traits<L*>::difference_type	difference_type; //dist betw iterators
 		typedef pointer iterator_type;
-		//this is for std::functions
 		typedef	std::random_access_iterator_tag iterator_category;
 	private:
 		pointer _ptr;
